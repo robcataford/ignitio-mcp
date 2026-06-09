@@ -60,6 +60,9 @@ def list_metrics():
     response.raise_for_status()
     return response.json()
 
-
+print("Registered MCP tools:")
+for name in mcp._tool_manager._tools.keys():
+    print(name)
+    
 if __name__ == "__main__":
     mcp.run(transport="streamable-http")
