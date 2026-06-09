@@ -12,6 +12,10 @@ API_URL = os.environ["IGNITIO_API_URL"]
 TOKEN = os.environ["IGNITIO_API_TOKEN"]
 ORGID = os.environ["IGNITIO_ORGID"]
 
+@mcp.tool()
+def hello():
+    """Simple connection test."""
+    return "Hello from Ignitio MCP"
 
 @mcp.tool()
 def get_metric_data(metricid: str, startdate: str, enddate: str):
