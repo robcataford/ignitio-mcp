@@ -1,4 +1,5 @@
 from mcp.server.fastmcp import FastMCP
+from starlette.responses import JSONResponse
 import requests
 import os
 
@@ -11,6 +12,10 @@ mcp = FastMCP(
 API_URL = os.environ["IGNITIO_API_URL"]
 TOKEN = os.environ["IGNITIO_API_TOKEN"]
 ORGID = os.environ["IGNITIO_ORGID"]
+
+@mcp.custom_route("/health", methods=["GET"])
+async def health(request):
+    return JSONResponse({"status": "ok"})
 
 @mcp.tool()
 def hello():
@@ -57,4 +62,4 @@ def list_metrics():
 
 
 if __name__ == "__main__":
-    mcp.run(transport="sse")
+    mcp.run(transport="streamable-http")
