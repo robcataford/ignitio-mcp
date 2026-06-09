@@ -2,14 +2,12 @@ from mcp.server.fastmcp import FastMCP
 import requests
 import os
 
-mcp = FastMCP("Ignitio Analytics")
-
-if "FASTMCP_HOST" not in os.environ:
-    os.environ["FASTMCP_HOST"] = "0.0.0.0"
-
-if "FASTMCP_PORT" not in os.environ:
-    os.environ["FASTMCP_PORT"] = os.environ.get("PORT", "8000")
-    
+mcp = FastMCP(
+    "Ignitio Analytics",
+    host="0.0.0.0",
+    port=int(os.environ.get("PORT", "8000"))
+)
+  
 API_URL = os.environ["IGNITIO_API_URL"]
 TOKEN = os.environ["IGNITIO_API_TOKEN"]
 ORGID = os.environ["IGNITIO_ORGID"]
